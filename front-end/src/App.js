@@ -30,8 +30,9 @@ class App extends Component {
     }
 
     addStudent(event){
-        var studentToAdd = event.target.parentNode.childNodes[0].value;
+        // var studentToAdd = event.target.parentNode.childNodes[0].value;
         // var studentToAdd = document.getElementById('newStudent');
+        var studentToAdd = $('#newStudent');
         // console.log(studentToAdd);
         // This is a POST request, so we can't use $.getJSON (only does get)
         // $.ajax expects an object that tells it what to send (data), where to send it (url),
