@@ -13,7 +13,7 @@ class Delete extends Component{
 
 	componentDidMount() {
 		var taskId = this.props.match.params.taskId
-		$.getJSON(`http://localhost:3000/getTask/${taskId}`, (taskData)=>{
+		$.getJSON(`http://localhost:3000/getTask/${taskId}?api_key=skdjflakhshgshglksgd`, (taskData)=>{
 			this.setState({
 				taskData: taskData
 			});
@@ -25,7 +25,7 @@ class Delete extends Component{
 		var taskId = this.props.match.params.taskId
 		$.ajax({
             method: "POST",
-            url: "http://localhost:3000/deleteTask",
+            url: "http://localhost:3000/deleteTask?apiKey=skdjflakhshgshglksgd",
             data: {
                 taskId: taskId
             }
@@ -47,7 +47,7 @@ class Delete extends Component{
 		var taskId = this.props.match.params.taskId
 
 		return(
-			<div className="container">
+			<div className="container text-center">
 				<h2>Are you sure you want to delete {this.state.taskData.taskName}?</h2>
 				<div>{this.state.taskData.taskName} - {this.state.taskData.taskDate}</div>
 				<button onClick={this.confirmDelete} className="btn btn-danger">Yes!</button>

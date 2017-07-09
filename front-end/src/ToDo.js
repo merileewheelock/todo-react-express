@@ -27,9 +27,9 @@ class ToDo extends Component {
                 <div className="to-do-app">
                     <Route exact={true} path="/" component={Home} />
                     {/* exact ensures that the home page only renders at /, and anything after / will not go home */}
-                    <Route path="/task/delete/:taskId" component={Delete} />
-                    <Route path="/task/read/:taskId" component={Read} />
-                    <Route path="/task/edit/:taskId" component={Edit} />
+                    <Route exact path="/task/delete/:taskId" component={Delete} />
+                    <Route exact path="/task/read/:taskId" component={Read} />
+                    <Route exact path="/task/edit/:taskId" component={Edit} />
                 </div>
             </Router>
         )

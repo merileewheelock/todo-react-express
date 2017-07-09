@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +14,7 @@ class Home extends Component{
 	// componentDidMount runs after the first render
 	componentDidMount() {
         // getJSON request to localhost:3000, that's where express is listening
-        $.getJSON('http://localhost:3000/getTasks', (tasksFromApi)=>{
+        $.getJSON('http://localhost:3000/getTasks?apiKey=skdjflakhshgshglksgd', (tasksFromApi)=>{
             // log the JSON response from express
             console.log(tasksFromApi);
             this.setState({
@@ -45,7 +44,7 @@ class Home extends Component{
         // which updates the list because we're mapping through state
         $.ajax({
             method: "POST",
-            url: "http://localhost:3000/addTask",
+            url: "http://localhost:3000/addTask?apiKey=skdjflakhshgshglksgd",
             data: {
                 taskName: newTask,
                 taskDate: newTaskDate,
@@ -62,6 +61,7 @@ class Home extends Component{
 		// Create an array to dump into our return. It will contain components or HTML tags
         var theTasksArray = [];
         // Loop through out state var.The first time through, it will be empty.
+
         this.state.tasksList.map((task, index)=>{
             // Push an li tag onto our array for each element in the state variable
             theTasksArray.push(
@@ -75,17 +75,16 @@ class Home extends Component{
         });
 
 		return(
-			<div className="App container">
-				<div className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<h2>Welcome to the React To Do List</h2>
+			<div className="container text-center">
+				<div className="header">
+					<h1>todos</h1>
 				</div>
 
                 <form onSubmit={this.addNewTask} className="add-box">
-                    <input type="text" id="new-task" placeholder="Add task" />
-                    <input type="date" id="new-task-date" placeholder="Add date" />
-                    <input type="text" id="new-task-info" placeholder="Enter task info" />
-                    <button type="submit" className="btn btn-primary">Add</button>
+                    <div><input type="text" id="new-task" placeholder="Add task" /></div>
+                    <div><input type="date" id="new-task-date" placeholder="Add date" /></div>
+                    <div><input type="text" id="new-task-info" placeholder="Enter task info" /></div>
+                    <button type="submit" className="btn btn-default">Add</button>
                 </form> 
 
                 <div>

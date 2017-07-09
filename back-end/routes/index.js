@@ -15,7 +15,8 @@ connection.connect();
 function validateKey(key){
 	console.log(key)
 	return new Promise((resolve, reject)=>{
-		connection.query('SELECT * FROM api_keys WHERE api_key=(?)', [key], (error, results)=>{
+		connection.query('SELECT * FROM api_keys WHERE api_key="'+key+'"', (error, results)=>{
+			console.log(results)
 			if (error) throw error;
 			if (results.length == 0){
 				resolve(false);

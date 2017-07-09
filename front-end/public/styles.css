@@ -1,0 +1,29 @@
+input{
+	width: 300px;
+	height: 30px;
+	outline: none;
+}
+
+button{
+	margin: 5px;
+}
+
+h1{
+	font-size: 80px;
+	font-family: 'Josefin Sans', sans-serif;
+	color: LightCoral;
+}
+
+h2{
+	font-size: 50px;
+	font-family: 'Josefin Sans', sans-serif;
+	color: LightCoral;
+}
+
+.table{
+	margin-top: 20px;
+}
+
+a{
+	color: LightSeaGreen;
+}
