@@ -9,6 +9,7 @@ class Home extends Component{
 			tasksList: []
 		}
 		this.addNewTask = this.addNewTask.bind(this);
+        this.checkCompleted = this.checkCompleted.bind(this);
 	}
 
 	// componentDidMount runs after the first render
@@ -57,6 +58,22 @@ class Home extends Component{
         });
     }
 
+    checkCompleted(targetId){
+        console.log(targetId)
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:3000/completeTask?apiKey=skdjflakhshgshglksgd",
+            data: {
+                targetId: targetId
+            }
+        }).done((tasksArray)=>{
+            console.log(tasksArray)
+            this.setState({
+                taskList: tasksArray
+            })
+        })          
+    }
+
 	render(){
 		// Create an array to dump into our return. It will contain components or HTML tags
         var theTasksArray = [];
@@ -64,9 +81,19 @@ class Home extends Component{
 
         this.state.tasksList.map((task, index)=>{
             // Push an li tag onto our array for each element in the state variable
+            var inlineStyle = {}
+            var finished = 0;
+            if (task.finished == 1){
+                inlineStyle = {
+                    "textDecoration": "line-through",
+                    "color": "black"
+                }
+                finished = true;
+            }
             theTasksArray.push(
                 <tr key={index}>
-                	<td><Link to={`/task/read/${task.id}`}>{task.taskName}</Link></td>
+                    <td><input checked={finished} className="circle-check" onChange={()=>{this.checkCompleted(task.id)}} type="checkbox" /><label htmlFor="circle-check" /></td>
+                	<td><Link style={inlineStyle} to={`/task/read/${task.id}`}>{task.taskName}</Link></td>
                     <td>{task.taskDate}</td>
                     <td><Link to={`/task/delete/${task.id}`}>Delete</Link></td>
                    	<td><Link to={`/task/edit/${task.id}`}>Edit</Link></td>
